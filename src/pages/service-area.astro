@@ -2,6 +2,7 @@
 export const prerender = true;
 import Layout from '../layouts/Layout.astro';
 import ContactStrip from '../components/ContactStrip.astro';
+import ServiceAreaMap from '../components/ServiceAreaMap.astro';
 import { serviceAreas, companyInfo } from '../data/services';
 ---
 
@@ -27,6 +28,9 @@ import { serviceAreas, companyInfo } from '../data/services';
         Contact us today to see if we service your neighborhood — and if you're just outside the list below, reach
         out anyway. We're often happy to travel for the right project.
       </p>
+    </div>
+    <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 mb-14">
+      <ServiceAreaMap />
     </div>
     <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">

@@ -113,6 +113,25 @@ export const serviceAreas = [
   'Bedminster, NJ',
 ];
 
+export interface ServiceAreaPin {
+  name: string;
+  lat: number;
+  lng: number;
+}
+
+/** Specific towns for the service-area map. "Morris County" is a region, not a pin, so it's omitted here. */
+export const serviceAreaPins: ServiceAreaPin[] = [
+  { name: 'Morristown, NJ', lat: 40.7968, lng: -74.4815 },
+  { name: 'Bernardsville, NJ', lat: 40.7187, lng: -74.5657 },
+  { name: 'Mendham, NJ', lat: 40.7748, lng: -74.5993 },
+  { name: 'Rockaway, NJ', lat: 40.9043, lng: -74.5163 },
+  { name: 'Cedar Knolls, NJ', lat: 40.8377, lng: -74.4335 },
+  { name: 'Peapack-Gladstone, NJ', lat: 40.7015, lng: -74.6485 },
+  { name: 'Far Hills, NJ', lat: 40.6987, lng: -74.6371 },
+  { name: 'Bernards Township, NJ', lat: 40.7048, lng: -74.5443 },
+  { name: 'Bedminster, NJ', lat: 40.6821, lng: -74.6363 },
+];
+
 export const companyInfo = {
   name: 'Action Renovations LLC',
   phone: '(848) 800-2320',

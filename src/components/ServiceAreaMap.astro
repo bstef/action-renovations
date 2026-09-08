@@ -1,0 +1,77 @@
+---
+import { serviceAreaPins } from '../data/services';
+---
+
+<div id="service-area-map" class="h-[420px] sm:h-[520px] w-full rounded-2xl ring-1 ring-black/10 shadow-xl overflow-hidden"></div>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+<script is:inline define:vars={{ pins: serviceAreaPins }} src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+<script is:inline define:vars={{ pins: serviceAreaPins }}>
+  function initServiceAreaMap() {
+    const el = document.getElementById('service-area-map');
+    if (!el || !window.L) return;
+
+    const map = window.L.map(el, {
+      scrollWheelZoom: false,
+      attributionControl: true,
+    });
+
+    window.L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+      subdomains: 'abcd',
+      maxZoom: 19,
+    }).addTo(map);
+
+    const goldPin = window.L.divIcon({
+      className: 'ar-map-pin',
+      html:
+        '<svg width="30" height="40" viewBox="0 0 30 40" xmlns="http://www.w3.org/2000/svg">' +
+        '<path d="M15 0C6.7 0 0 6.7 0 15c0 10.5 15 25 15 25s15-14.5 15-25C30 6.7 23.3 0 15 0z" fill="#e8ac37" stroke="#141414" stroke-width="1.5"/>' +
+        '<circle cx="15" cy="15" r="6" fill="#141414"/>' +
+        '</svg>',
+      iconSize: [30, 40],
+      iconAnchor: [15, 40],
+      popupAnchor: [0, -36],
+    });
+
+    const markers = pins.map((pin) => {
+      const marker = window.L.marker([pin.lat, pin.lng], { icon: goldPin }).addTo(map);
+      marker.bindPopup('<span class="ar-map-popup">' + pin.name + '</span>');
+      return marker;
+    });
+
+    const group = window.L.featureGroup(markers);
+    map.fitBounds(group.getBounds().pad(0.25));
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initServiceAreaMap);
+  } else {
+    initServiceAreaMap();
+  }
+</script>
+
+<style is:global>
+  .ar-map-pin {
+    background: none;
+    border: none;
+  }
+  .leaflet-popup-content-wrapper {
+    background: #141414;
+    color: #ffffff;
+    border-radius: 0.5rem;
+    border: 1px solid #e8ac37;
+  }
+  .leaflet-popup-tip {
+    background: #141414;
+  }
+  .ar-map-popup {
+    font-family: 'Poppins', ui-sans-serif, sans-serif;
+    font-weight: 600;
+    font-size: 0.875rem;
+  }
+  .leaflet-control-attribution {
+    font-size: 10px;
+  }
+</style>
