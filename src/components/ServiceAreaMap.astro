@@ -1,5 +1,9 @@
 ---
 import { serviceAreaPins } from '../data/services';
+
+// CARTO basemap key — this is a client-side tile key by design (used directly in browser
+// tile requests), the same way a restricted Google Maps JS key would be. Not a secret.
+const cartoKey = 'cb1_2itn_1_e48b69c936ee97b064518b2c';
 ---
 
 <div id="service-area-map" class="h-[420px] sm:h-[520px] w-full rounded-2xl ring-1 ring-black/10 shadow-xl overflow-hidden"></div>
@@ -7,7 +11,7 @@ import { serviceAreaPins } from '../data/services';
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
 <script is:inline define:vars={{ pins: serviceAreaPins }} src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
-<script is:inline define:vars={{ pins: serviceAreaPins }}>
+<script is:inline define:vars={{ pins: serviceAreaPins, cartoKey }}>
   function initServiceAreaMap() {
     const el = document.getElementById('service-area-map');
     if (!el || !window.L) return;
@@ -17,9 +21,8 @@ import { serviceAreaPins } from '../data/services';
       attributionControl: true,
     });
 
-    window.L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+    window.L.tileLayer('https://basemaps.cartocdn.com/rastertiles/dark_all/{z}/{x}/{y}.png?key=' + cartoKey, {
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
-      subdomains: 'abcd',
       maxZoom: 19,
     }).addTo(map);
 
