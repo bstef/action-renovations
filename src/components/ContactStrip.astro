@@ -1,0 +1,23 @@
+---
+import { companyInfo } from '../data/services';
+---
+
+<section class="bg-gold-50 border-y border-gold-200">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 grid grid-cols-1 sm:grid-cols-3 gap-8 text-center">
+    <div>
+      <h3 class="font-display font-bold text-lg text-ink">Call Us</h3>
+      <p class="text-sm text-ink/60 mt-1 mb-3">Got questions that need answered? Give us a call today.</p>
+      <a href={companyInfo.phoneHref} class="font-bold text-gold-600 hover:text-gold-700">{companyInfo.phone}</a>
+    </div>
+    <div>
+      <h3 class="font-display font-bold text-lg text-ink">Get a Free Estimate</h3>
+      <p class="text-sm text-ink/60 mt-1 mb-3">Tell us about your project and we'll follow up fast.</p>
+      <a href="/contact" class="font-bold text-gold-600 hover:text-gold-700">REQUEST A QUOTE</a>
+    </div>
+    <div>
+      <h3 class="font-display font-bold text-lg text-ink">See Our Work</h3>
+      <p class="text-sm text-ink/60 mt-1 mb-3">Browse recent renovation projects across Morris County.</p>
+      <a href="/our-work" class="font-bold text-gold-600 hover:text-gold-700">VIEW PROJECTS</a>
+    </div>
+  </div>
+</section>

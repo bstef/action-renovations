@@ -1,0 +1,119 @@
+---
+import { services } from '../data/services';
+
+interface Props {
+  heading?: string;
+  subheading?: string;
+}
+const {
+  heading = 'Request Your Free Quote',
+  subheading = "Tell us about your project and we'll get back to you shortly.",
+} = Astro.props;
+---
+
+<div class="rounded-2xl bg-white shadow-xl ring-1 ring-black/5 p-6 sm:p-8">
+  <h3 class="font-display text-2xl font-bold text-ink mb-1">{heading}</h3>
+  <p class="text-sm text-ink/60 mb-6">{subheading}</p>
+
+  <form id="lead-form" class="space-y-4" novalidate>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div>
+        <label for="firstName" class="block text-xs font-semibold uppercase tracking-wide text-ink/70 mb-1">First Name *</label>
+        <input id="firstName" name="firstName" type="text" required class="w-full rounded-md border border-black/10 px-3 py-2.5 text-sm focus:border-gold-400 focus:ring-1 focus:ring-gold-400 outline-none" />
+      </div>
+      <div>
+        <label for="lastName" class="block text-xs font-semibold uppercase tracking-wide text-ink/70 mb-1">Last Name *</label>
+        <input id="lastName" name="lastName" type="text" required class="w-full rounded-md border border-black/10 px-3 py-2.5 text-sm focus:border-gold-400 focus:ring-1 focus:ring-gold-400 outline-none" />
+      </div>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div>
+        <label for="email" class="block text-xs font-semibold uppercase tracking-wide text-ink/70 mb-1">Email *</label>
+        <input id="email" name="email" type="email" required class="w-full rounded-md border border-black/10 px-3 py-2.5 text-sm focus:border-gold-400 focus:ring-1 focus:ring-gold-400 outline-none" />
+      </div>
+      <div>
+        <label for="phone" class="block text-xs font-semibold uppercase tracking-wide text-ink/70 mb-1">Phone *</label>
+        <input id="phone" name="phone" type="tel" required class="w-full rounded-md border border-black/10 px-3 py-2.5 text-sm focus:border-gold-400 focus:ring-1 focus:ring-gold-400 outline-none" />
+      </div>
+    </div>
+    <div>
+      <label for="address" class="block text-xs font-semibold uppercase tracking-wide text-ink/70 mb-1">Property Address</label>
+      <input id="address" name="address" type="text" placeholder="Street, City, NJ, Zip" class="w-full rounded-md border border-black/10 px-3 py-2.5 text-sm focus:border-gold-400 focus:ring-1 focus:ring-gold-400 outline-none" />
+    </div>
+    <div>
+      <label for="service" class="block text-xs font-semibold uppercase tracking-wide text-ink/70 mb-1">Service Needed</label>
+      <select id="service" name="service" class="w-full rounded-md border border-black/10 px-3 py-2.5 text-sm focus:border-gold-400 focus:ring-1 focus:ring-gold-400 outline-none bg-white">
+        <option value="">Select a service</option>
+        {services.map((service) => <option value={service.name}>{service.name}</option>)}
+        <option value="Other">Other / Not sure</option>
+      </select>
+    </div>
+    <div>
+      <label for="message" class="block text-xs font-semibold uppercase tracking-wide text-ink/70 mb-1">Project Details</label>
+      <textarea id="message" name="message" rows="4" placeholder="Tell us a bit about your project..." class="w-full rounded-md border border-black/10 px-3 py-2.5 text-sm focus:border-gold-400 focus:ring-1 focus:ring-gold-400 outline-none"></textarea>
+    </div>
+
+    <!-- Honeypot field to deter simple bots; hidden from real users -->
+    <div class="hidden" aria-hidden="true">
+      <label for="company">Company</label>
+      <input id="company" name="company" type="text" tabindex="-1" autocomplete="off" />
+    </div>
+
+    <input type="hidden" name="source" value="website" />
+
+    <button
+      type="submit"
+      id="lead-form-submit"
+      class="w-full inline-flex items-center justify-center rounded-md bg-gold-400 px-6 py-3.5 text-sm font-bold uppercase tracking-wide text-ink shadow hover:bg-gold-300 transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+    >
+      Submit Request
+    </button>
+
+    <p id="lead-form-status" class="text-sm mt-2 hidden" role="status"></p>
+  </form>
+</div>
+
+<script>
+  const form = document.getElementById('lead-form') as HTMLFormElement | null;
+  const submitBtn = document.getElementById('lead-form-submit') as HTMLButtonElement | null;
+  const status = document.getElementById('lead-form-status') as HTMLParagraphElement | null;
+
+  form?.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    if (!submitBtn || !status) return;
+
+    // Honeypot check — if filled, silently pretend success and drop it.
+    const honeypot = (form.elements.namedItem('company') as HTMLInputElement | null)?.value;
+    if (honeypot) {
+      form.reset();
+      return;
+    }
+
+    const data = Object.fromEntries(new FormData(form).entries());
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending...';
+    status.classList.add('hidden');
+
+    try {
+      const res = await fetch('/api/lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+
+      if (!res.ok) throw new Error('Request failed');
+
+      form.reset();
+      status.textContent = "Thanks! We've got your request and will be in touch shortly.";
+      status.className = 'text-sm mt-2 text-green-700 font-medium';
+    } catch (err) {
+      status.textContent = 'Something went wrong sending your request. Please call us instead.';
+      status.className = 'text-sm mt-2 text-red-700 font-medium';
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Submit Request';
+      status.classList.remove('hidden');
+    }
+  });
+</script>

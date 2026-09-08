@@ -1,0 +1,50 @@
+---
+import { companyInfo, serviceAreas, services } from '../data/services';
+const year = new Date().getFullYear();
+---
+
+<footer class="bg-ink text-white">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14 grid grid-cols-1 md:grid-cols-4 gap-10">
+    <div>
+      <img src="/images/brand/logo-white.png" alt={companyInfo.name} class="h-12 w-auto mb-4" />
+      <p class="text-white/60 text-sm leading-relaxed">
+        Value-adding home renovations across {companyInfo.serviceRegion}. Licensed, insured, and focused on
+        craftsmanship that lasts.
+      </p>
+      <a href={companyInfo.phoneHref} class="mt-4 inline-block text-gold-300 font-semibold hover:text-gold-200">
+        {companyInfo.phone}
+      </a>
+    </div>
+    <div>
+      <h3 class="font-display font-semibold uppercase tracking-wide text-sm text-white/90 mb-4">Services</h3>
+      <ul class="space-y-2 text-sm text-white/60">
+        {services.slice(0, 6).map((service) => (
+          <li><a href={`/services/${service.slug}`} class="hover:text-gold-300 transition-colors">{service.name}</a></li>
+        ))}
+      </ul>
+    </div>
+    <div>
+      <h3 class="font-display font-semibold uppercase tracking-wide text-sm text-white/90 mb-4">Service Area</h3>
+      <ul class="space-y-2 text-sm text-white/60">
+        {serviceAreas.map((area) => (
+          <li>{area}</li>
+        ))}
+      </ul>
+    </div>
+    <div>
+      <h3 class="font-display font-semibold uppercase tracking-wide text-sm text-white/90 mb-4">Company</h3>
+      <ul class="space-y-2 text-sm text-white/60">
+        <li><a href="/about" class="hover:text-gold-300 transition-colors">About Us</a></li>
+        <li><a href="/our-work" class="hover:text-gold-300 transition-colors">Our Work</a></li>
+        <li><a href="/service-area" class="hover:text-gold-300 transition-colors">Service Area</a></li>
+        <li><a href="/contact" class="hover:text-gold-300 transition-colors">Contact Us</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="border-t border-white/10">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-white/40">
+      <p>&copy; {year} {companyInfo.name}. All rights reserved.</p>
+      <p>Proudly serving {companyInfo.serviceRegion} and surrounding areas.</p>
+    </div>
+  </div>
+</footer>

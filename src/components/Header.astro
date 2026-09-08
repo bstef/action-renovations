@@ -1,0 +1,92 @@
+---
+import { companyInfo } from '../data/services';
+
+const navItems = [
+  { label: 'Home', href: '/' },
+  { label: 'About Us', href: '/about' },
+  { label: 'Services', href: '/services' },
+  { label: 'Service Area', href: '/service-area' },
+  { label: 'Our Work', href: '/our-work' },
+  { label: 'Contact Us', href: '/contact' },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<header class="sticky top-0 z-50">
+  <div class="bg-ink text-white text-sm">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex items-center justify-between h-9">
+      <span class="hidden sm:block tracking-wide text-white/80">{companyInfo.tagline}</span>
+      <a href={companyInfo.phoneHref} class="ml-auto flex items-center gap-1.5 font-medium text-white hover:text-gold-300 transition-colors">
+        {companyInfo.phone}
+      </a>
+    </div>
+  </div>
+  <div class="bg-white border-b border-black/5 shadow-sm">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="flex h-20 items-center justify-between">
+        <a href="/" class="flex items-center gap-2">
+          <img src="/images/brand/logo-dark.png" alt={companyInfo.name} class="h-11 w-auto" />
+        </a>
+        <nav class="hidden lg:flex items-center gap-8">
+          {navItems.map((item) => (
+            <a
+              href={item.href}
+              class:list={[
+                'text-sm font-semibold uppercase tracking-wide transition-colors',
+                currentPath === item.href || (item.href !== '/' && currentPath.startsWith(item.href))
+                  ? 'text-gold-600'
+                  : 'text-ink hover:text-gold-600',
+              ]}
+            >
+              {item.label}
+            </a>
+          ))}
+        </nav>
+        <div class="hidden lg:block">
+          <a
+            href="/contact"
+            class="inline-flex items-center rounded-md bg-gold-400 px-5 py-2.5 text-sm font-bold uppercase tracking-wide text-ink shadow hover:bg-gold-300 transition-colors"
+          >
+            Get a Free Quote
+          </a>
+        </div>
+        <button
+          id="mobile-menu-button"
+          class="lg:hidden inline-flex items-center justify-center rounded-md p-2 text-ink"
+          aria-label="Toggle menu"
+          aria-expanded="false"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+      <nav id="mobile-menu" class="hidden lg:hidden pb-6">
+        <div class="flex flex-col gap-4">
+          {navItems.map((item) => (
+            <a href={item.href} class="text-sm font-semibold uppercase tracking-wide text-ink hover:text-gold-600">
+              {item.label}
+            </a>
+          ))}
+          <a
+            href="/contact"
+            class="inline-flex items-center justify-center rounded-md bg-gold-400 px-5 py-2.5 text-sm font-bold uppercase tracking-wide text-ink shadow hover:bg-gold-300"
+          >
+            Get a Free Quote
+          </a>
+        </div>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<script>
+  const button = document.getElementById('mobile-menu-button');
+  const menu = document.getElementById('mobile-menu');
+  button?.addEventListener('click', () => {
+    const isOpen = menu?.classList.contains('hidden') === false;
+    menu?.classList.toggle('hidden');
+    button.setAttribute('aria-expanded', String(!isOpen));
+  });
+</script>

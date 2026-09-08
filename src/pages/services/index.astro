@@ -1,0 +1,38 @@
+---
+export const prerender = true;
+import Layout from '../../layouts/Layout.astro';
+import ServiceCard from '../../components/ServiceCard.astro';
+import ContactStrip from '../../components/ContactStrip.astro';
+import { services } from '../../data/services';
+---
+
+<Layout
+  title="Our Services | Action Renovations LLC | Morris County, NJ"
+  description="From kitchen overhauls to roofing, explore the full range of renovation services from Action Renovations LLC in Morris County, NJ."
+>
+  <section class="relative h-72 flex items-center overflow-hidden">
+    <img src="/images/services/kitchen.jpg" alt="Renovation services" class="absolute inset-0 h-full w-full object-cover" />
+    <div class="absolute inset-0 bg-black/60"></div>
+    <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <h1 class="font-display text-4xl sm:text-5xl font-extrabold text-white">Our Services</h1>
+    </div>
+  </section>
+
+  <section class="py-20 bg-white">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-14 max-w-2xl mx-auto">
+        <p class="text-gold-600 font-semibold uppercase tracking-widest text-sm mb-3">Dream It, Build It</p>
+        <h2 class="font-display text-3xl sm:text-4xl font-bold text-ink mb-4">Renovation Services in Morris County, NJ</h2>
+        <p class="text-ink/60">
+          Our service range covers everything from minor updates to major overhauls. We collaborate closely with
+          you, blending your ideas with our expertise to create a space that truly feels like home.
+        </p>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        {services.map((service) => <ServiceCard service={service} />)}
+      </div>
+    </div>
+  </section>
+
+  <ContactStrip />
+</Layout>

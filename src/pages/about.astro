@@ -1,0 +1,70 @@
+---
+export const prerender = true;
+import Layout from '../layouts/Layout.astro';
+import ContactStrip from '../components/ContactStrip.astro';
+import { companyInfo } from '../data/services';
+---
+
+<Layout
+  title="About Us | Action Renovations LLC | Morris County, NJ"
+  description="Action Renovations LLC focuses on adding substantial value to your home through renovations that blend timeless design with lasting craftsmanship."
+>
+  <section class="relative h-72 flex items-center overflow-hidden">
+    <img src="/images/about-hero.jpg" alt="Modern kitchen design" class="absolute inset-0 h-full w-full object-cover" />
+    <div class="absolute inset-0 bg-black/60"></div>
+    <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <h1 class="font-display text-4xl sm:text-5xl font-extrabold text-white">About Us</h1>
+    </div>
+  </section>
+
+  <section class="py-20 bg-white">
+    <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+      <p class="text-gold-600 font-semibold uppercase tracking-widest text-sm mb-3 text-center">Our Approach</p>
+      <h2 class="font-display text-3xl sm:text-4xl font-bold text-ink mb-8 text-center">
+        We Focus on Adding Substantial Value to Your Home
+      </h2>
+      <div class="space-y-6 text-ink/70 leading-relaxed text-lg">
+        <p>
+          Specializing in renovation projects that do more than just update aesthetics, we focus on adding
+          substantial value to your home. Our approach is holistic, considering both current trends and timeless
+          design. We work to enhance the functionality and appeal of your property, ensuring that every project —
+          whether it's a new addition or a kitchen makeover — contributes positively to your home's market value.
+        </p>
+        <p>
+          Our commitment is delivering renovations you'll love today, and that will pay dividends if you ever
+          decide to sell. Our expertise covers every room, ensuring each space — from your living room to your
+          primary bedroom — perfectly aligns with your style and functional needs.
+        </p>
+        <p>
+          We focus on the fine details: selecting premium materials and applying skilled techniques to every
+          aspect of the renovation. Whether it's a modern update or a classic redesign, our team is dedicated to
+          delivering excellence on every project, so your home isn't just renovated — it's transformed.
+        </p>
+      </div>
+      <div class="mt-10 text-center">
+        <a href={companyInfo.phoneHref} class="inline-flex items-center rounded-md bg-gold-400 px-7 py-3.5 text-sm font-bold uppercase tracking-wide text-ink shadow hover:bg-gold-300 transition-colors">
+          Give Us a Call
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-gray-50">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid grid-cols-1 sm:grid-cols-3 gap-10 text-center">
+      <div>
+        <p class="font-display text-4xl font-extrabold text-gold-500 mb-2">Licensed</p>
+        <p class="text-ink/60">Fully licensed &amp; insured for your peace of mind on every job, big or small.</p>
+      </div>
+      <div>
+        <p class="font-display text-4xl font-extrabold text-gold-500 mb-2">Local</p>
+        <p class="text-ink/60">Rooted in {companyInfo.serviceRegion}, with a team that knows the area inside and out.</p>
+      </div>
+      <div>
+        <p class="font-display text-4xl font-extrabold text-gold-500 mb-2">Detail-Driven</p>
+        <p class="text-ink/60">Premium materials and skilled craftsmanship on every project we touch.</p>
+      </div>
+    </div>
+  </section>
+
+  <ContactStrip />
+</Layout>

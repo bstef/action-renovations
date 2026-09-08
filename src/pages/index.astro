@@ -1,0 +1,109 @@
+---
+export const prerender = true;
+import Layout from '../layouts/Layout.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import ContactStrip from '../components/ContactStrip.astro';
+import { services, serviceAreas, companyInfo } from '../data/services';
+---
+
+<Layout
+  title="Action Renovations LLC | Home Renovations in Morris County, NJ"
+  description="Action Renovations LLC specializes in value-adding home renovations across Morris County, NJ — kitchens, bathrooms, flooring, electrical, plumbing, and more."
+>
+  <section class="relative h-[600px] sm:h-[680px] flex items-center overflow-hidden">
+    <img src="/images/hero-banner.jpg" alt="Renovated kitchen" class="absolute inset-0 h-full w-full object-cover" />
+    <div class="absolute inset-0 bg-gradient-to-r from-black/75 via-black/45 to-black/10"></div>
+    <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full">
+      <p class="text-gold-300 font-semibold uppercase tracking-widest text-sm mb-4">
+        Proudly Serving {companyInfo.serviceRegion}
+      </p>
+      <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white max-w-2xl leading-tight">
+        Transform Your Space, Elevate Your Value
+      </h1>
+      <p class="mt-6 text-white/85 text-lg max-w-xl leading-relaxed">
+        Specializing in renovation projects that do more than just update aesthetics; we focus on adding
+        substantial value to your home.
+      </p>
+      <div class="mt-8 flex flex-wrap gap-4">
+        <a href="/contact" class="inline-flex items-center rounded-md bg-gold-400 px-7 py-3.5 text-sm font-bold uppercase tracking-wide text-ink shadow-lg hover:bg-gold-300 transition-colors">
+          Get a Free Quote
+        </a>
+        <a href={companyInfo.phoneHref} class="inline-flex items-center rounded-md border-2 border-white px-7 py-3.5 text-sm font-bold uppercase tracking-wide text-white hover:bg-white hover:text-ink transition-colors">
+          Give Us a Call
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-white">
+    <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 text-center">
+      <p class="text-gold-600 font-semibold uppercase tracking-widest text-sm mb-3">Creating Spaces That Reflect Your Vision</p>
+      <h2 class="font-display text-3xl sm:text-4xl font-bold text-ink mb-6">
+        Renovations Built to Add Lasting Value
+      </h2>
+      <p class="text-ink/60 leading-relaxed text-lg">
+        We specialize in value-adding renovations that go beyond mere aesthetics. Our holistic approach balances
+        current trends with timeless design to enhance your property's functionality and appeal. Whether it's a
+        room addition or a kitchen update, every project is built to deliver renovations you'll enjoy now — and
+        benefit from later if you sell.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-20 bg-gray-50">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-14">
+        <p class="text-gold-600 font-semibold uppercase tracking-widest text-sm mb-3">Dream It, Build It</p>
+        <h2 class="font-display text-3xl sm:text-4xl font-bold text-ink">Our Services</h2>
+        <p class="text-ink/60 mt-4 max-w-2xl mx-auto">
+          Our service range covers everything from minor updates to major overhauls, blending your ideas with our
+          expertise to create a space that truly feels like home.
+        </p>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        {services.map((service) => <ServiceCard service={service} />)}
+      </div>
+      <div class="text-center mt-12">
+        <a href="/services" class="inline-flex items-center rounded-md bg-ink px-7 py-3.5 text-sm font-bold uppercase tracking-wide text-white hover:bg-ink-light transition-colors">
+          View All Services
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-white">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
+      <div class="relative h-96 rounded-2xl overflow-hidden shadow-xl">
+        <img src="/images/about-hero.jpg" alt="Modern kitchen design" class="h-full w-full object-cover" />
+      </div>
+      <div>
+        <p class="text-gold-600 font-semibold uppercase tracking-widest text-sm mb-3">Areas We Serve</p>
+        <h2 class="font-display text-3xl sm:text-4xl font-bold text-ink mb-6">
+          Proudly Serving All of Morris County
+        </h2>
+        <p class="text-ink/60 leading-relaxed mb-8">
+          Proudly serving the whole county of Morris County and surrounding areas. Wherever your renovation takes
+          us, our team shows up ready to deliver craftsmanship you can count on.
+        </p>
+        <ul class="grid grid-cols-2 gap-3 mb-8">
+          {serviceAreas.map((area) => (
+            <li class="flex items-center gap-2 text-ink font-medium">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gold-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+              </svg>
+              {area}
+            </li>
+          ))}
+        </ul>
+        <a href="/service-area" class="inline-flex items-center gap-1 font-bold uppercase tracking-wide text-sm text-gold-600 hover:text-gold-700">
+          View Full Service Area
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <ContactStrip />
+</Layout>

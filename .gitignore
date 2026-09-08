@@ -1,1 +1,19 @@
 .DS_Store
+
+# dependencies
+node_modules/
+
+# build output
+dist/
+.astro/
+.wrangler/
+
+# environment / secrets — never commit real values
+.dev.vars
+.env
+.env.*
+!.env.example
+
+# editor
+.vscode/*
+!.vscode/extensions.json
