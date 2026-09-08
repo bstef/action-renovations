@@ -107,6 +107,10 @@ export const serviceAreas = [
   'Morris County, NJ',
   'Rockaway, NJ',
   'Cedar Knolls, NJ',
+  'Peapack-Gladstone, NJ',
+  'Far Hills, NJ',
+  'Bernards Township, NJ',
+  'Bedminster, NJ',
 ];
 
 export const companyInfo = {
