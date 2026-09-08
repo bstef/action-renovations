@@ -1,0 +1,166 @@
+---
+export const prerender = true;
+import Layout from '../layouts/Layout.astro';
+import ContactStrip from '../components/ContactStrip.astro';
+import { companyInfo } from '../data/services';
+
+const applyUrl = 'https://www.hfsfinancial.net/promo/68964315c335b0801fb43dde/';
+const flyerUrl = '/documents/action-renovations-hfs-financing-flyer.pdf';
+
+const steps = [
+  { title: 'Scan or click to inquire', body: 'Starting an inquiry takes about a minute.' },
+  {
+    title: 'Soft credit check only',
+    body: 'HFS performs a soft credit check to get your loan terms — this has no impact on your credit score.',
+  },
+  {
+    title: 'Get your terms within 24 hours',
+    body: 'Once conditionally approved, you’ll be presented with loan terms.',
+  },
+  {
+    title: 'Funds go straight to you',
+    body: 'Once fully approved, the full loan amount funds directly to your checking account — simple for you and for us.',
+  },
+];
+
+const benefits = [
+  'Direct-to-consumer funded',
+  'No impact on credit to get terms',
+  'No home equity or appraisal required',
+  'Industry-leading terms',
+  'Finance any home improvement',
+  'Finance up to 120% of your project cost',
+];
+---
+
+<Layout
+  title="Financing Options | Action Renovations LLC | Morris County, NJ"
+  description="Action Renovations LLC now offers home improvement financing through HFS Financial — a soft credit inquiry, no home equity or appraisal required, and up to 120% project financing available."
+>
+  <section class="relative py-20 sm:py-28 overflow-hidden bg-ink">
+    <img src="/images/hero-banner.jpg" alt="" class="absolute inset-0 h-full w-full object-cover opacity-25" />
+    <div class="absolute inset-0 bg-gradient-to-b from-ink/40 via-ink/80 to-ink"></div>
+    <div class="relative mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
+      <div class="inline-flex items-center gap-3 rounded-xl bg-white px-5 py-3 shadow-lg mb-8">
+        <span class="text-xs font-semibold uppercase tracking-wide text-ink/50">Financing powered by</span>
+        <img src="/images/financing/hfs-logo.webp" alt="HFS Financial — Home Improvement Loans" class="h-8 w-auto" />
+      </div>
+      <h1 class="font-display text-4xl sm:text-5xl font-extrabold text-white leading-tight mb-6">
+        You Dream It. We Finance It.
+      </h1>
+      <p class="text-white/80 text-lg leading-relaxed max-w-2xl mx-auto mb-4">
+        We now offer home improvement financing options through HFS Financial. Explore potential financing with a
+        soft credit inquiry &mdash; no home equity or appraisal required &mdash; and qualified customers may be
+        eligible to finance up to <strong class="text-gold-300">120%</strong> of their renovation project.
+      </p>
+      <div class="flex flex-wrap items-center justify-center gap-2 mb-10">
+        {Array.from({ length: 5 }).map(() => (
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gold-400" viewBox="0 0 20 20" fill="currentColor">
+            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.958a1 1 0 00.95.69h4.162c.969 0 1.371 1.24.588 1.81l-3.368 2.447a1 1 0 00-.364 1.118l1.287 3.957c.3.922-.755 1.688-1.54 1.118l-3.367-2.447a1 1 0 00-1.176 0l-3.367 2.447c-.784.57-1.838-.196-1.539-1.118l1.286-3.957a1 1 0 00-.363-1.118L2.983 9.385c-.783-.57-.38-1.81.588-1.81h4.163a1 1 0 00.95-.69l1.285-3.958z" />
+          </svg>
+        ))}
+        <span class="ml-2 text-white/70 font-semibold text-sm">Thousands of 5-Star Reviews</span>
+      </div>
+      <div class="flex flex-wrap items-center justify-center gap-4">
+        <a
+          href={applyUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center rounded-md bg-gold-400 px-8 py-4 text-sm font-bold uppercase tracking-wide text-ink shadow-lg hover:bg-gold-300 transition-colors"
+        >
+          Check Your Rate &mdash; No Impact on Credit
+        </a>
+        <a
+          href={flyerUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center rounded-md border-2 border-white/70 px-8 py-4 text-sm font-bold uppercase tracking-wide text-white hover:bg-white hover:text-ink transition-colors"
+        >
+          Download Flyer (PDF)
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-white">
+    <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-14 max-w-2xl mx-auto">
+        <p class="text-gold-600 font-semibold uppercase tracking-widest text-sm mb-3">Why HFS Financial</p>
+        <h2 class="font-display text-3xl sm:text-4xl font-bold text-ink">Financing Built for Home Improvement</h2>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {benefits.map((benefit) => (
+          <div class="flex items-start gap-3 rounded-xl bg-gray-50 ring-1 ring-black/5 p-5">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gold-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+            </svg>
+            <span class="font-semibold text-ink">{benefit}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-gray-50">
+    <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-14 max-w-2xl mx-auto">
+        <p class="text-gold-600 font-semibold uppercase tracking-widest text-sm mb-3">How It Works</p>
+        <h2 class="font-display text-3xl sm:text-4xl font-bold text-ink">From Inquiry to Funded in Days</h2>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        {steps.map((step, i) => (
+          <div>
+            <div class="flex h-12 w-12 items-center justify-center rounded-full bg-ink text-gold-300 font-display font-bold text-lg mb-4">
+              {i + 1}
+            </div>
+            <h3 class="font-display font-bold text-ink mb-2">{step.title}</h3>
+            <p class="text-sm text-ink/60 leading-relaxed">{step.body}</p>
+          </div>
+        ))}
+      </div>
+
+      <div class="mt-14 rounded-2xl bg-ink p-8 sm:p-10">
+        <p class="text-gold-300 font-semibold uppercase tracking-widest text-xs mb-3">Example</p>
+        <p class="text-white text-lg leading-relaxed">
+          Fund up to <strong class="text-gold-300">120%</strong> of your total project cost. These additional funds
+          can be used for any changes you'd like to make during construction.
+        </p>
+        <p class="text-white/70 mt-4">
+          If your total project cost is <strong class="text-white">$100,000</strong>, with HFS you could finance up
+          to <strong class="text-white">$120,000</strong> &mdash; a total maximum loan amount 120% of your project
+          cost.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-white">
+    <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="font-display text-2xl sm:text-3xl font-bold text-ink mb-4">Have a Project in Mind?</h2>
+      <p class="text-ink/60 mb-8">
+        We'd be happy to talk through your project and how financing could work for it.
+      </p>
+      <div class="flex flex-wrap items-center justify-center gap-4">
+        <a href="/contact" class="inline-flex items-center rounded-md bg-gold-400 px-7 py-3.5 text-sm font-bold uppercase tracking-wide text-ink shadow hover:bg-gold-300 transition-colors">
+          Get In Touch
+        </a>
+        <a href={companyInfo.phoneHref} class="inline-flex items-center rounded-md border-2 border-ink px-7 py-3.5 text-sm font-bold uppercase tracking-wide text-ink hover:bg-ink hover:text-white transition-colors">
+          Call {companyInfo.phone}
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-gray-50 border-t border-black/5">
+    <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-8">
+      <p class="text-xs text-ink/40 leading-relaxed">
+        HFS Financial is not a lender or a broker. The information you provide to HFS Financial is not an
+        application for a loan from HFS Financial. HFS Financial does not endorse, warrant or guarantee service or
+        products of any lender or broker. This is not an advertisement for credit as defined by 12 CFR 1026.24. All
+        information is subject to change without notice. Not all will qualify.
+      </p>
+    </div>
+  </section>
+
+  <ContactStrip />
+</Layout>
