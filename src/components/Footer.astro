@@ -14,12 +14,14 @@ const year = new Date().getFullYear();
       <a href={companyInfo.phoneHref} class="mt-4 block text-gold-300 font-semibold hover:text-gold-200">
         {companyInfo.phone}
       </a>
-      <p class="mt-2 text-white/40 text-xs">NJ HIC License #{companyInfo.njHicLicense}</p>
+      <p class="mt-3 text-white/70 text-sm font-display font-bold tracking-wide">
+        NJ HIC License #{companyInfo.njHicLicense}
+      </p>
     </div>
     <div>
       <h3 class="font-display font-semibold uppercase tracking-wide text-sm text-white/90 mb-4">Services</h3>
       <ul class="space-y-2 text-sm text-white/60">
-        {services.slice(0, 6).map((service) => (
+        {services.map((service) => (
           <li><a href={`/services/${service.slug}`} class="hover:text-gold-300 transition-colors">{service.name}</a></li>
         ))}
       </ul>
@@ -44,7 +46,7 @@ const year = new Date().getFullYear();
     </div>
   </div>
   <div class="border-t border-white/10">
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-white/40">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-sm font-display font-semibold text-white/50">
       <p>&copy; {year} {companyInfo.name}. All rights reserved.</p>
       <p>Proudly serving {companyInfo.serviceRegion} and surrounding areas.</p>
     </div>
