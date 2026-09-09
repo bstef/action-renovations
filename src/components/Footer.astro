@@ -11,9 +11,10 @@ const year = new Date().getFullYear();
         Value-adding home renovations across {companyInfo.serviceRegion}. Licensed, insured, and focused on
         craftsmanship that lasts.
       </p>
-      <a href={companyInfo.phoneHref} class="mt-4 inline-block text-gold-300 font-semibold hover:text-gold-200">
+      <a href={companyInfo.phoneHref} class="mt-4 block text-gold-300 font-semibold hover:text-gold-200">
         {companyInfo.phone}
       </a>
+      <p class="mt-2 text-white/40 text-xs">NJ HIC License #{companyInfo.njHicLicense}</p>
     </div>
     <div>
       <h3 class="font-display font-semibold uppercase tracking-wide text-sm text-white/90 mb-4">Services</h3>

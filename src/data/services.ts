@@ -138,4 +138,5 @@ export const companyInfo = {
   phoneHref: 'tel:+18488002320',
   tagline: 'Interior & Exterior Renovations Experts',
   serviceRegion: 'Morris County, NJ',
+  njHicLicense: '13VH14111800',
 };
