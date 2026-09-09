@@ -139,4 +139,8 @@ export const companyInfo = {
   tagline: 'Interior & Exterior Renovations Experts',
   serviceRegion: 'Morris County, NJ',
   njHicLicense: '13VH14111800',
+  // Housecall Pro customer portal — the token is a stable, per-account API key (not a
+  // per-session/per-customer token), confirmed by inspecting the same link on the live
+  // actionrenovations.net site, so it's safe to use as a permanent link here.
+  customerPortalUrl: 'https://client.housecallpro.com/customer_portal/request-link?token=8d1d2e82676d4b66b7740847c5f84670',
 };

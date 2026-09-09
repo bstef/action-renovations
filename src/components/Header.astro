@@ -18,9 +18,19 @@ const isServicesActive = currentPath.startsWith('/services');
   <div class="bg-ink text-white text-sm">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex items-center justify-between h-9">
       <span class="hidden sm:block tracking-wide text-white/80">{companyInfo.tagline}</span>
-      <a href={companyInfo.phoneHref} class="ml-auto flex items-center gap-1.5 font-medium text-white hover:text-gold-300 transition-colors">
-        {companyInfo.phone}
-      </a>
+      <div class="ml-auto flex items-center gap-5">
+        <a
+          href={companyInfo.customerPortalUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="font-medium text-white/80 hover:text-gold-300 transition-colors uppercase tracking-wide text-xs sm:text-sm"
+        >
+          Customer Login
+        </a>
+        <a href={companyInfo.phoneHref} class="flex items-center gap-1.5 font-medium text-white hover:text-gold-300 transition-colors">
+          {companyInfo.phone}
+        </a>
+      </div>
     </div>
   </div>
   <div class="bg-white border-b border-black/5 shadow-sm">
