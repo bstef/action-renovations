@@ -46,5 +46,31 @@ import { services } from '../data/services';
     </div>
   </section>
 
+  <section class="bg-ink py-14">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-center gap-6 lg:gap-10">
+      <div class="flex-shrink-0 flex items-center gap-1.5">
+        {Array.from({ length: 5 }).map(() => (
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-gold-400" viewBox="0 0 20 20" fill="currentColor">
+            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.958a1 1 0 00.95.69h4.162c.969 0 1.371 1.24.588 1.81l-3.368 2.447a1 1 0 00-.364 1.118l1.287 3.957c.3.922-.755 1.688-1.54 1.118l-3.367-2.447a1 1 0 00-1.176 0l-3.367 2.447c-.784.57-1.838-.196-1.539-1.118l1.286-3.957a1 1 0 00-.363-1.118L2.983 9.385c-.783-.57-.38-1.81.588-1.81h4.163a1 1 0 00.95-.69l1.285-3.958z" />
+          </svg>
+        ))}
+      </div>
+      <div class="flex-1 text-center lg:text-left">
+        <h2 class="font-display text-2xl sm:text-3xl font-bold text-white">
+          Don't Just Take Our Word For It
+        </h2>
+        <p class="text-white/70 mt-2 max-w-2xl">
+          See what homeowners across Morris &amp; Somerset County are saying about working with us.
+        </p>
+      </div>
+      <a
+        href="/reviews"
+        class="flex-shrink-0 inline-flex items-center rounded-md bg-gold-400 px-7 py-3.5 text-sm font-bold uppercase tracking-wide text-ink shadow hover:bg-gold-300 transition-colors"
+      >
+        Read Our Reviews
+      </a>
+    </div>
+  </section>
+
   <ContactStrip />
 </Layout>
