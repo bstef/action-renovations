@@ -1,0 +1,63 @@
+---
+export const prerender = true;
+import Layout from '../layouts/Layout.astro';
+import ContactStrip from '../components/ContactStrip.astro';
+import { companyInfo } from '../data/services';
+---
+
+<Layout
+  title="Customer Reviews | Action Renovations LLC | Morris County, NJ"
+  description="Read verified customer reviews for Action Renovations LLC, serving Morris and Somerset County, NJ."
+>
+  <section class="relative h-72 flex items-center overflow-hidden">
+    <img src="/images/hero-banner.jpg" alt="Customer reviews" class="absolute inset-0 h-full w-full object-cover" />
+    <div class="absolute inset-0 bg-black/60"></div>
+    <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <h1 class="font-display text-4xl sm:text-5xl font-extrabold text-white">Customer Reviews</h1>
+    </div>
+  </section>
+
+  <section class="py-20 bg-white">
+    <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center mb-12">
+      <p class="text-gold-600 font-semibold uppercase tracking-widest text-sm mb-3">What Our Customers Say</p>
+      <h2 class="font-display text-3xl sm:text-4xl font-bold text-ink mb-6">Real Reviews From Real Projects</h2>
+      <div class="flex flex-wrap items-center justify-center gap-2 mb-4">
+        {Array.from({ length: 5 }).map(() => (
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gold-400" viewBox="0 0 20 20" fill="currentColor">
+            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.958a1 1 0 00.95.69h4.162c.969 0 1.371 1.24.588 1.81l-3.368 2.447a1 1 0 00-.364 1.118l1.287 3.957c.3.922-.755 1.688-1.54 1.118l-3.367-2.447a1 1 0 00-1.176 0l-3.367 2.447c-.784.57-1.838-.196-1.539-1.118l1.286-3.957a1 1 0 00-.363-1.118L2.983 9.385c-.783-.57-.38-1.81.588-1.81h4.163a1 1 0 00.95-.69l1.285-3.958z" />
+          </svg>
+        ))}
+      </div>
+      <p class="text-ink/60 leading-relaxed">
+        These reviews are pulled directly from our Housecall Pro customer feedback — unedited, straight from the
+        homeowners we've worked with across Morris &amp; Somerset County.
+      </p>
+    </div>
+
+    <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+      <div class="rounded-2xl bg-gray-50 ring-1 ring-black/10 shadow-xl p-3 sm:p-6 overflow-hidden">
+        <iframe
+          src="https://client.housecallpro.com/reviews/widget/d75767bd-bcf6-461b-b507-4d85f1b9a7e7"
+          width="100%"
+          height="1000"
+          title="Action Renovations LLC customer reviews"
+          class="w-full border-0 rounded-lg"
+          loading="lazy"
+        ></iframe>
+      </div>
+      <div class="mt-12 text-center">
+        <p class="text-ink/60 mb-6">Ready to start your own project?</p>
+        <div class="flex flex-wrap items-center justify-center gap-4">
+          <a href="/contact" class="inline-flex items-center rounded-md bg-gold-400 px-7 py-3.5 text-sm font-bold uppercase tracking-wide text-ink shadow hover:bg-gold-300 transition-colors">
+            Get a Free Quote
+          </a>
+          <a href={companyInfo.phoneHref} class="inline-flex items-center rounded-md border-2 border-ink px-7 py-3.5 text-sm font-bold uppercase tracking-wide text-ink hover:bg-ink hover:text-white transition-colors">
+            Call {companyInfo.phone}
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <ContactStrip />
+</Layout>
