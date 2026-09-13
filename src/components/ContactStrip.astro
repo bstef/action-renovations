@@ -1,9 +1,15 @@
 ---
 import { companyInfo } from '../data/services';
+import BookOnlineButton from './BookOnlineButton.astro';
 ---
 
 <section class="bg-gold-50 border-y border-gold-200">
-  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 grid grid-cols-1 sm:grid-cols-3 gap-8 text-center">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+    <div>
+      <h3 class="font-display font-bold text-lg text-ink">Book Online</h3>
+      <p class="text-sm text-ink/60 mt-1 mb-3">Pick a service and time that works for you, instantly.</p>
+      <BookOnlineButton class="font-bold text-gold-600 hover:text-gold-700">BOOK NOW</BookOnlineButton>
+    </div>
     <div>
       <h3 class="font-display font-bold text-lg text-ink">Call Us</h3>
       <p class="text-sm text-ink/60 mt-1 mb-3">Got questions that need answered? Give us a call today.</p>

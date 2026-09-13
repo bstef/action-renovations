@@ -143,4 +143,8 @@ export const companyInfo = {
   // per-session/per-customer token), confirmed by inspecting the same link on the live
   // actionrenovations.net site, so it's safe to use as a permanent link here.
   customerPortalUrl: 'https://client.housecallpro.com/customer_portal/request-link?token=8d1d2e82676d4b66b7740847c5f84670',
+  // Housecall Pro online booking widget — opens an in-page modal (via HCPWidget.openModal()).
+  hcpBookingToken: '3a86fe0e3aa144b9beef091769cbb72a',
+  hcpOrgName: 'Action-Renovations-LLC',
+  bookingUrl: 'https://book.housecallpro.com/book/Action-Renovations-LLC/3a86fe0e3aa144b9beef091769cbb72a?v2=true',
 };

@@ -1,0 +1,18 @@
+---
+import { companyInfo } from '../data/services';
+
+interface Props {
+  class?: string;
+}
+const { class: className = '' } = Astro.props;
+---
+
+<button
+  type="button"
+  data-token={companyInfo.hcpBookingToken}
+  data-orgname={companyInfo.hcpOrgName}
+  class:list={['hcp-button', className]}
+  onclick="window.HCPWidget && window.HCPWidget.openModal()"
+>
+  <slot>Book Online</slot>
+</button>

@@ -3,6 +3,7 @@ export const prerender = true;
 import Layout from '../layouts/Layout.astro';
 import ServiceCard from '../components/ServiceCard.astro';
 import ContactStrip from '../components/ContactStrip.astro';
+import BookOnlineButton from '../components/BookOnlineButton.astro';
 import { services, serviceAreas, serviceAreaPins, companyInfo } from '../data/services';
 
 const stats = [
@@ -32,10 +33,11 @@ const stats = [
         substantial value to your home.
       </p>
       <div class="mt-8 flex flex-wrap gap-4">
-        <a href="/contact" class="inline-flex items-center rounded-md bg-gold-400 px-7 py-3.5 text-sm font-bold uppercase tracking-wide text-ink shadow-lg hover:bg-gold-300 transition-colors">
+        <BookOnlineButton class="inline-flex items-center rounded-md bg-gold-400 px-7 py-3.5 text-sm font-bold uppercase tracking-wide text-ink shadow-lg hover:bg-gold-300 transition-colors" />
+        <a href="/contact" class="inline-flex items-center rounded-md border-2 border-white px-7 py-3.5 text-sm font-bold uppercase tracking-wide text-white hover:bg-white hover:text-ink transition-colors">
           Get a Free Quote
         </a>
-        <a href={companyInfo.phoneHref} class="inline-flex items-center rounded-md border-2 border-white px-7 py-3.5 text-sm font-bold uppercase tracking-wide text-white hover:bg-white hover:text-ink transition-colors">
+        <a href={companyInfo.phoneHref} class="inline-flex items-center rounded-md border-2 border-white/60 px-7 py-3.5 text-sm font-bold uppercase tracking-wide text-white/90 hover:bg-white hover:text-ink transition-colors">
           Give Us a Call
         </a>
       </div>

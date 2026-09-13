@@ -1,5 +1,6 @@
 ---
 import { companyInfo, services } from '../data/services';
+import BookOnlineButton from './BookOnlineButton.astro';
 
 const currentPath = Astro.url.pathname;
 const isServicesActive = currentPath.startsWith('/services');
@@ -20,13 +21,14 @@ const workDropdown = [
           href={companyInfo.customerPortalUrl}
           target="_blank"
           rel="noopener noreferrer"
-          class="font-medium text-white/80 hover:text-gold-300 transition-colors uppercase tracking-wide text-xs sm:text-sm"
+          class="hidden sm:block font-medium text-white/80 hover:text-gold-300 transition-colors uppercase tracking-wide text-xs sm:text-sm"
         >
           Customer Login
         </a>
         <a href={companyInfo.phoneHref} class="flex items-center gap-1.5 font-medium text-white hover:text-gold-300 transition-colors">
           {companyInfo.phone}
         </a>
+        <BookOnlineButton class="inline-flex items-center rounded bg-gold-400 px-3 py-1 text-xs sm:text-sm font-bold uppercase tracking-wide text-ink hover:bg-gold-300 transition-colors" />
       </div>
     </div>
   </div>

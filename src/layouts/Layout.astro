@@ -1,6 +1,7 @@
 ---
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import { companyInfo } from '../data/services';
 import '../styles/global.css';
 
 interface Props {
@@ -31,6 +32,11 @@ const { title, description } = Astro.props;
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap"
       rel="stylesheet"
     />
+
+    <script
+      async
+      src={`https://online-booking.housecallpro.com/script.js?token=${companyInfo.hcpBookingToken}&orgName=${companyInfo.hcpOrgName}`}
+    ></script>
   </head>
   <body class="font-sans">
     <Header />

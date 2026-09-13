@@ -2,6 +2,7 @@
 export const prerender = true;
 import Layout from '../layouts/Layout.astro';
 import LeadForm from '../components/LeadForm.astro';
+import BookOnlineButton from '../components/BookOnlineButton.astro';
 import { companyInfo, serviceAreas } from '../data/services';
 ---
 
@@ -26,6 +27,12 @@ import { companyInfo, serviceAreas } from '../data/services';
           Got questions that need answered? Give us a call today, or send us your project details and a member of
           our team will follow up shortly.
         </p>
+
+        <div class="rounded-xl bg-ink p-6 mb-8">
+          <p class="font-display font-bold text-white mb-1">Prefer to book instantly?</p>
+          <p class="text-white/60 text-sm mb-4">Skip the form and pick a service &amp; time right now.</p>
+          <BookOnlineButton class="inline-flex items-center rounded-md bg-gold-400 px-6 py-3 text-sm font-bold uppercase tracking-wide text-ink shadow hover:bg-gold-300 transition-colors" />
+        </div>
 
         <div class="space-y-6">
           <div class="flex items-start gap-4">
