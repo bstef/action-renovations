@@ -15,6 +15,8 @@ the `actionrenovations.net` domain — that's a deliberate, separate step; see "
 - **Tailwind CSS** for styling.
 - **@astrojs/cloudflare** adapter — ships a single Worker (`_worker.js`) alongside the static assets.
 - **Leaflet** (CDN, client-side only) for the interactive map on `/service-area`.
+- **Housecall Pro's online-booking widget script** (loaded site-wide, see "Online booking" below)
+  and **reviews widget** (embedded via iframe on `/reviews` only).
 
 ## Pages
 
@@ -25,14 +27,29 @@ the `actionrenovations.net` domain — that's a deliberate, separate step; see "
 | `/services` | All 9 services, also reachable via the header's Services dropdown. |
 | `/services/[slug]` | One page per service (`src/data/services.ts` → `services` array drives this). |
 | `/service-area` | Town list + interactive Leaflet map (see below). |
-| `/our-work` | One representative photo per service category — not real job case studies yet. |
+| `/our-work` | One representative photo per service category — not real job case studies yet. Ends with a "Read Our Reviews" banner linking to `/reviews`. |
+| `/reviews` | Embeds the real Housecall Pro reviews widget (iframe) in a card styled to match the site. |
 | `/financing` | HFS Financial partnership page (see below). |
-| `/contact` | Contact info + the lead form. |
+| `/contact` | Contact info, a "prefer to book instantly?" Book Online callout, and the lead form. |
 | `/api/lead` | POST endpoint the lead form submits to; not a page. |
 
-The header's **Services** nav item is a dropdown (hover on desktop, `<details>` on mobile) linking
-directly to all 9 service pages — this is deliberate for SEO: every service page is a real `<a>`
-link present in the static HTML of every page on the site, one crawl-hop from anywhere.
+## Navigation
+
+The header has two hover dropdowns (desktop) / `<details>` accordions (mobile), both driving
+directly off `src/data/services.ts` so they can't drift out of sync with the actual pages:
+
+- **Services** → all 9 service pages, plus "View All Services".
+- **Our Work** → `/our-work` ("Recent Projects") and `/reviews` ("Customer Reviews"). Reviews was
+  folded in here rather than added as its own top-level nav item — see the breakpoint note below.
+
+Every link in both dropdowns is a real `<a>` in the static HTML of every page, one crawl-hop from
+anywhere — deliberate for SEO.
+
+**Desktop nav breakpoint is `xl` (1280px), not `lg` (1024px).** With the full item set (Home,
+About Us, Services▾, Service Area, Our Work▾, Financing, Contact Us) plus the logo and CTA button,
+1024px is too narrow — the nav visibly wraps onto two lines. Below 1280px it now shows the mobile
+hamburger menu instead. If you add another top-level nav item, re-check this at exactly 1024px and
+1280px before assuming it fits.
 
 ## Local development
 
@@ -112,13 +129,40 @@ an env var — it's visible in the network tab either way.
 Covers the HFS Financial partnership: soft-credit-check inquiry, no equity/appraisal required, up
 to 120% project financing, a how-it-works walkthrough, and HFS's required legal disclaimer
 (displayed verbatim — don't edit that text without checking with HFS/legal first). Also linked
-from a banner on the homepage (right under the hero).
+from a banner on the homepage (right under the hero, above the services grid) and from a
+"Financing by HFS" badge in the footer, to the right of the payment-method icons.
 
 - **Apply link** → your personalized HFS promo URL (hardcoded in `src/pages/financing.astro` and
   `src/pages/index.astro` as `applyUrl` / the banner's href).
 - **HFS logo** → `public/images/financing/hfs-logo.webp`, pulled from HFS's own site
   (`hfsfinancial.net`), legitimate to use for a co-marketing/partner page.
 - **Downloadable flyer** → `public/documents/action-renovations-hfs-financing-flyer.pdf`.
+
+## Online booking (Housecall Pro widget)
+
+The Housecall Pro online-booking script is loaded site-wide in `src/layouts/Layout.astro`, and
+`src/components/BookOnlineButton.astro` is the reusable trigger — it renders a plain `<button>`
+whose `onclick` calls `window.HCPWidget.openModal()`, matching HCP's own recommended snippet
+exactly. It's placed in: the header top bar, the homepage hero (primary CTA), the `ContactStrip`
+component (shown on most pages), each service page (above the quote form), and the contact page.
+Booking config (token, org name, and the fallback booking-page URL) lives in `companyInfo` in
+`src/data/services.ts`.
+
+**Two gotchas found while wiring this up:**
+
+1. **Don't put `class="hcp-button"` on the trigger element.** The HCP script scans the page for
+   that exact class name and force-overrides its CSS (to HCP's own blue), clobbering whatever
+   styling you gave it. `BookOnlineButton.astro` deliberately omits that class — only your own
+   `class` prop is applied.
+2. **The modal wouldn't render on `localhost` or the `*.pages.dev` preview domain.** Clicking does
+   correctly toggle HCP's widget container and inject an iframe pointing at the right booking URL
+   (confirmed via DOM inspection — `document.querySelector('.hcp-widget')` gets the
+   `hcp-widget--visible` class and a same-content iframe), but the iframe painted blank in both
+   environments. The likely cause is that HCP's booking iframe is domain-restricted (like an
+   `X-Frame-Options`/CSP `frame-ancestors` allowlist) to the business's actual registered domain,
+   which neither `localhost` nor a Cloudflare preview subdomain would satisfy. **This needs a real
+   test on `actionrenovations.net` once DNS is cut over** — if it's still blank there, check
+   Housecall Pro's booking widget settings for a domain allowlist.
 
 ## Customer Login (Housecall Pro portal)
 
@@ -147,8 +191,25 @@ than real project case studies.
 
 ## NJ HIC license
 
-Displayed in the footer (`src/data/services.ts` → `companyInfo.njHicLicense`, currently
-`13VH14111800`). Update that one value if the license number ever changes.
+Displayed in the footer, set in bold display type (`src/data/services.ts` →
+`companyInfo.njHicLicense`, currently `13VH14111800`). Update that one value if the license number
+ever changes.
+
+## Footer (`src/components/Footer.astro`)
+
+Four columns (company info + license, all 9 services, the full service-area town list, and
+company/site links including Customer Reviews), then two full-width rows below:
+
+- **Payment methods** (left) — Visa, Mastercard, Amex, Discover, Apple Pay, Google Pay, as inline
+  SVGs sourced from [Simple Icons](https://simpleicons.org) (CC0 icon shapes; these are standard
+  "we accept" brand-mark usage, not licensed assets). **Financing by HFS** badge (right) — same
+  white pill/logo treatment as the homepage banner and `/financing` hero.
+- Copyright + service-region line, set in the display font.
+
+If you add a 10th service or another town, both list columns pull straight from `services` /
+`serviceAreas` in `src/data/services.ts` — no template changes needed. (There was a bug where the
+Services column was hardcoded to `.slice(0, 6)` and silently dropped 3 services; that's fixed, but
+worth remembering if columns ever look short again after adding new items.)
 
 ## Deploying to Cloudflare Pages
 
