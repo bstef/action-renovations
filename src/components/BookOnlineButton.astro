@@ -11,7 +11,7 @@ const { class: className = '' } = Astro.props;
   type="button"
   data-token={companyInfo.hcpBookingToken}
   data-orgname={companyInfo.hcpOrgName}
-  class:list={['hcp-button', className]}
+  class={className}
   onclick="window.HCPWidget && window.HCPWidget.openModal()"
 >
   <slot>Book Online</slot>
