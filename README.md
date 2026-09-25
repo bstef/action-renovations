@@ -31,7 +31,7 @@ see "Deploying" below.
 | `/service-area` | Town list + interactive Leaflet map (see below). |
 | `/our-work` | One representative photo per service category — not real job case studies yet. Ends with a "Read Our Reviews" banner linking to `/reviews`. |
 | `/reviews` | Embeds the real Housecall Pro reviews widget (iframe) in a card styled to match the site. |
-| `/social` | "Follow Us" — Facebook + Instagram cards and an embedded Facebook Page Plugin timeline (plain iframe, no SDK). Accounts live in `socialLinks` in `src/data/services.ts`. |
+| `/social` | "Follow Us" — Facebook, Instagram, and Google Business Profile cards and an embedded Facebook Page Plugin timeline (plain iframe, no SDK). Accounts live in `socialLinks` in `src/data/services.ts`. |
 | `/financing` | HFS Financial partnership page (see below). |
 | `/contact` | Contact info, a "prefer to book instantly?" Book Online callout, and the lead form. |
 | `/api/lead` | POST endpoint the lead form submits to; not a page. |
@@ -228,7 +228,7 @@ company/site links including Customer Reviews and Follow Us), then two full-widt
   entry's `viewBox` is cropped to the mark's real bounds so wide wordmarks fill the chip. Standard
   "we accept" brand-mark usage, not licensed assets. **Financing by HFS** badge (right) — same
   white pill/logo treatment as the homepage banner and `/financing` hero.
-- Copyright (left) + service-region line and Facebook/Instagram icons (right), set in the display
+- Copyright (left) + service-region line and Facebook/Instagram/Google icons (right), set in the display
   font. The icons come from `socialLinks` in `src/data/services.ts`.
 
 If you add a 10th service or another town, both list columns pull straight from `services` /

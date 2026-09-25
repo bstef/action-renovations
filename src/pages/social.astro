@@ -13,7 +13,7 @@ const facebookFeedUrl = facebook
 
 <Layout
   title="Follow Us | Action Renovations LLC | Morris County, NJ"
-  description="Follow Action Renovations LLC on Facebook and Instagram for project updates, before-and-afters, and our latest renovation work across Morris County, NJ."
+  description="Follow Action Renovations LLC on Facebook, Instagram, and Google for project updates, before-and-afters, and our latest renovation work across Morris County, NJ."
 >
   <section class="relative h-72 flex items-center overflow-hidden">
     <img src="/images/services/kitchen.jpg" alt="Renovated kitchen" class="absolute inset-0 h-full w-full object-cover" />
@@ -29,11 +29,11 @@ const facebookFeedUrl = facebook
       <h2 class="font-display text-3xl sm:text-4xl font-bold text-ink mb-6">See What We're Working On</h2>
       <p class="text-ink/60 leading-relaxed text-lg">
         Follow along for in-progress shots, finished transformations, and ideas for your own home. Have a question
-        about something you saw? Send us a message on either platform.
+        about something you saw? Send us a message on Facebook or Instagram.
       </p>
     </div>
 
-    <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 grid grid-cols-1 sm:grid-cols-2 gap-6">
+    <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-3 gap-6">
       {socialLinks.map((link) => (
         <a
           href={link.url}
@@ -47,10 +47,10 @@ const facebookFeedUrl = facebook
             </svg>
           </div>
           <h3 class="font-display text-2xl font-bold text-ink">{link.name}</h3>
-          <p class="text-gold-600 font-semibold mt-1">@{link.handle}</p>
+          <p class="text-gold-600 font-semibold mt-1">{link.display}</p>
           <p class="text-sm text-ink/60 leading-relaxed mt-3 mb-6">{link.blurb}</p>
           <span class="mt-auto inline-flex items-center gap-1 rounded-md bg-gold-400 px-6 py-3 text-sm font-bold uppercase tracking-wide text-ink shadow group-hover:bg-gold-300 transition-colors">
-            Follow on {link.name}
+            {link.cta}
           </span>
         </a>
       ))}
