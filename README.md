@@ -258,7 +258,10 @@ npx wrangler pages deploy ./dist --project-name=action-renovations --branch=main
 
 - **`actionrenos.com`** — already attached as a custom domain and serving this site.
 - **`actionrenovations.net`** — not cut over yet; still the old Duda site. When you do cut over, add
-  it under **Custom domains**, and add a `public/_redirects` file first so the old site's
-  `/about-us` and `/contact-us` URLs 301 to `/about` and `/contact`.
+  it under **Custom domains**. The old site's `/about-us` and `/contact-us` URLs are already
+  301-redirected to `/about/` and `/contact/` via `public/_redirects` (the other old URLs —
+  `/services`, `/service-area` — exist here under the same paths). The Astro Cloudflare adapter
+  reads that file and excludes those paths from the worker in `_routes.json`, so Pages applies
+  them; redirects for anything under `/api/*` wouldn't work, since the worker serves those.
 - `site` in `astro.config.mjs` (and so every page's canonical URL) is `https://actionrenovations.net`.
   Change it if `actionrenos.com` is meant to be the long-term primary domain.

@@ -1,0 +1,6 @@
+# Old Duda-site URLs (from the actionrenovations.net sitemap) -> their pages on this site.
+# Both slash variants are listed so each is a single 301 hop.
+/about-us     /about/     301
+/about-us/    /about/     301
+/contact-us   /contact/   301
+/contact-us/  /contact/   301
