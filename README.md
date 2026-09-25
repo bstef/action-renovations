@@ -4,8 +4,10 @@ Marketing site for Action Renovations LLC, built with [Astro](https://astro.buil
 [Cloudflare Pages](https://pages.cloudflare.com/). Leads submitted on the site are forwarded to
 Housecall Pro via a Zapier webhook.
 
-**Live:** [action-renovations.pages.dev](https://action-renovations.pages.dev) (not yet cut over to
-the `actionrenovations.net` domain — that's a deliberate, separate step; see "Deploying" below).
+**Live:** [actionrenos.com](https://actionrenos.com) and
+[action-renovations.pages.dev](https://action-renovations.pages.dev). The main
+`actionrenovations.net` domain has **not** been cut over yet — it still serves the old Duda site;
+see "Deploying" below.
 
 ## Stack
 
@@ -216,26 +218,35 @@ worth remembering if columns ever look short again after adding new items.)
 
 ## Deploying to Cloudflare Pages
 
-**Current setup:** deployed manually via the Wrangler CLI (not yet connected to Cloudflare's Git
-integration). To ship a change:
+**Current setup:** the Pages project is connected to this GitHub repo — **pushing to `main`
+deploys to production automatically**, and pushes to other branches get preview deployments
+(`<hash>.action-renovations.pages.dev`). Build settings (Workers & Pages → action-renovations →
+Settings → Builds):
+
+- Build command: `npm run build`
+- Build output directory: `dist`
+- Production branch: `main`
+
+> The build command was blank for a while, so every Git build failed with `Output directory "dist"
+> not found` and pushes silently didn't deploy (production kept serving the last good build). If
+> pushes stop showing up live, check the deployment list for failures first:
+> `npx wrangler pages deployment list --project-name=action-renovations`.
+
+The `ZAPIER_LEAD_WEBHOOK_URL` secret (see "Lead pipeline") lives on the Pages project, so it applies
+to Git builds with no extra setup. The CARTO key is in source (see "Service area map").
+
+**Manual deploy (fallback):** direct upload with Wrangler still works if you need to ship without
+pushing — build from a path without spaces (see the iCloud note under "Local development"), then:
 
 ```bash
-npm run build
 npx wrangler pages deploy ./dist --project-name=action-renovations --branch=main
 ```
 
-To switch to git-based auto-deploys instead (recommended eventually, so pushing to `main` deploys
-automatically without a manual CLI step):
+### Domains
 
-1. In the Cloudflare dashboard: **Workers & Pages → action-renovations → Settings → Builds →
-   Connect to Git**, and select the `bstef/action-renovations` repo.
-2. Build settings:
-   - Framework preset: **Astro**
-   - Build command: `npm run build`
-   - Build output directory: `dist`
-3. The `ZAPIER_LEAD_WEBHOOK_URL` secret (see "Lead pipeline") and the CARTO key (already in source,
-   see "Service area map") don't need any extra setup for this — secrets persist on the Pages
-   project regardless of how deploys are triggered.
-4. Point the `actionrenovations.net` domain at the Pages project under **Custom domains** once
-   you're ready to cut over DNS — this hasn't been done yet; the live site today is still the old
-   Duda-based one.
+- **`actionrenos.com`** — already attached as a custom domain and serving this site.
+- **`actionrenovations.net`** — not cut over yet; still the old Duda site. When you do cut over, add
+  it under **Custom domains**, and add a `public/_redirects` file first so the old site's
+  `/about-us` and `/contact-us` URLs 301 to `/about` and `/contact`.
+- `site` in `astro.config.mjs` (and so every page's canonical URL) is `https://actionrenovations.net`.
+  Change it if `actionrenos.com` is meant to be the long-term primary domain.
