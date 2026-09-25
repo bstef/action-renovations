@@ -1,0 +1,86 @@
+---
+export const prerender = true;
+import Layout from '../layouts/Layout.astro';
+import ContactStrip from '../components/ContactStrip.astro';
+import { socialLinks } from '../data/services';
+
+const facebook = socialLinks.find((link) => link.name === 'Facebook');
+// Facebook's Page Plugin as a plain iframe (no SDK script). It caps out at 500px wide.
+const facebookFeedUrl = facebook
+  ? `https://www.facebook.com/plugins/page.php?href=${encodeURIComponent(facebook.url)}&tabs=timeline&width=500&height=700&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true`
+  : null;
+---
+
+<Layout
+  title="Follow Us | Action Renovations LLC | Morris County, NJ"
+  description="Follow Action Renovations LLC on Facebook and Instagram for project updates, before-and-afters, and our latest renovation work across Morris County, NJ."
+>
+  <section class="relative h-72 flex items-center overflow-hidden">
+    <img src="/images/services/kitchen.jpg" alt="Renovated kitchen" class="absolute inset-0 h-full w-full object-cover" />
+    <div class="absolute inset-0 bg-black/60"></div>
+    <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <h1 class="font-display text-4xl sm:text-5xl font-extrabold text-white">Follow Us</h1>
+    </div>
+  </section>
+
+  <section class="py-20 bg-white">
+    <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center mb-14">
+      <p class="text-gold-600 font-semibold uppercase tracking-widest text-sm mb-3">Stay Connected</p>
+      <h2 class="font-display text-3xl sm:text-4xl font-bold text-ink mb-6">See What We're Working On</h2>
+      <p class="text-ink/60 leading-relaxed text-lg">
+        Follow along for in-progress shots, finished transformations, and ideas for your own home. Have a question
+        about something you saw? Send us a message on either platform.
+      </p>
+    </div>
+
+    <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 grid grid-cols-1 sm:grid-cols-2 gap-6">
+      {socialLinks.map((link) => (
+        <a
+          href={link.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="group flex flex-col items-center text-center rounded-2xl bg-gray-50 ring-1 ring-black/5 p-8 hover:shadow-xl hover:ring-gold-300 transition-all"
+        >
+          <div class="flex h-16 w-16 items-center justify-center rounded-full bg-ink text-gold-400 mb-5 group-hover:bg-gold-400 group-hover:text-ink transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-7 w-7" aria-hidden="true">
+              <path fill="currentColor" d={link.iconPath} />
+            </svg>
+          </div>
+          <h3 class="font-display text-2xl font-bold text-ink">{link.name}</h3>
+          <p class="text-gold-600 font-semibold mt-1">@{link.handle}</p>
+          <p class="text-sm text-ink/60 leading-relaxed mt-3 mb-6">{link.blurb}</p>
+          <span class="mt-auto inline-flex items-center gap-1 rounded-md bg-gold-400 px-6 py-3 text-sm font-bold uppercase tracking-wide text-ink shadow group-hover:bg-gold-300 transition-colors">
+            Follow on {link.name}
+          </span>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  {facebook && facebookFeedUrl && (
+    <section class="py-20 bg-gray-50">
+      <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center mb-10">
+        <p class="text-gold-600 font-semibold uppercase tracking-widest text-sm mb-3">Latest Posts</p>
+        <h2 class="font-display text-3xl sm:text-4xl font-bold text-ink">From Our Facebook Page</h2>
+      </div>
+      <div class="mx-auto max-w-[540px] px-4">
+        <div class="rounded-2xl bg-white ring-1 ring-black/10 shadow-xl p-3 sm:p-5 overflow-hidden">
+          <iframe
+            src={facebookFeedUrl}
+            width="500"
+            height="700"
+            title="Action Renovations LLC on Facebook"
+            class="w-full border-0 rounded-lg"
+            loading="lazy"
+            allow="encrypted-media"
+          ></iframe>
+        </div>
+        <p class="mt-6 text-center text-sm text-ink/50">
+          Not loading? <a href={facebook.url} target="_blank" rel="noopener noreferrer" class="font-semibold text-gold-600 hover:text-gold-700">View our page on Facebook</a>.
+        </p>
+      </div>
+    </section>
+  )}
+
+  <ContactStrip />
+</Layout>

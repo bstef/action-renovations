@@ -4,12 +4,12 @@ import BookOnlineButton from './BookOnlineButton.astro';
 
 const currentPath = Astro.url.pathname;
 const isServicesActive = currentPath.startsWith('/services');
-const isWorkActive = currentPath === '/our-work' || currentPath === '/reviews';
-
 const workDropdown = [
   { label: 'Recent Projects', href: '/our-work' },
   { label: 'Customer Reviews', href: '/reviews' },
+  { label: 'Follow Us', href: '/social' },
 ];
+const isWorkActive = workDropdown.some((item) => currentPath.replace(/\/$/, '') === item.href);
 ---
 
 <header class="sticky top-0 z-50">

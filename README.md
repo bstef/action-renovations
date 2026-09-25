@@ -29,6 +29,7 @@ the `actionrenovations.net` domain — that's a deliberate, separate step; see "
 | `/service-area` | Town list + interactive Leaflet map (see below). |
 | `/our-work` | One representative photo per service category — not real job case studies yet. Ends with a "Read Our Reviews" banner linking to `/reviews`. |
 | `/reviews` | Embeds the real Housecall Pro reviews widget (iframe) in a card styled to match the site. |
+| `/social` | "Follow Us" — Facebook + Instagram cards and an embedded Facebook Page Plugin timeline (plain iframe, no SDK). Accounts live in `socialLinks` in `src/data/services.ts`. |
 | `/financing` | HFS Financial partnership page (see below). |
 | `/contact` | Contact info, a "prefer to book instantly?" Book Online callout, and the lead form. |
 | `/api/lead` | POST endpoint the lead form submits to; not a page. |
@@ -39,8 +40,9 @@ The header has two hover dropdowns (desktop) / `<details>` accordions (mobile), 
 directly off `src/data/services.ts` so they can't drift out of sync with the actual pages:
 
 - **Services** → all 9 service pages, plus "View All Services".
-- **Our Work** → `/our-work` ("Recent Projects") and `/reviews` ("Customer Reviews"). Reviews was
-  folded in here rather than added as its own top-level nav item — see the breakpoint note below.
+- **Our Work** → `/our-work` ("Recent Projects"), `/reviews` ("Customer Reviews"), and `/social`
+  ("Follow Us"). Reviews and Social were folded in here rather than added as their own top-level nav
+  items — see the breakpoint note below.
 
 Every link in both dropdowns is a real `<a>` in the static HTML of every page, one crawl-hop from
 anywhere — deliberate for SEO.
@@ -197,8 +199,9 @@ ever changes.
 
 ## Footer (`src/components/Footer.astro`)
 
-Four columns (company info + license, all 9 services, the full service-area town list, and
-company/site links including Customer Reviews), then two full-width rows below:
+Four columns (company info + license + Facebook/Instagram icons, all 9 services, the full
+service-area town list, and company/site links including Customer Reviews and Follow Us), then two
+full-width rows below:
 
 - **Payment methods** (left) — Visa, Mastercard, Amex, Discover, Apple Pay, Google Pay, as inline
   SVGs sourced from [Simple Icons](https://simpleicons.org) (CC0 icon shapes; these are standard
