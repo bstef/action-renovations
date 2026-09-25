@@ -9,7 +9,7 @@ import { services, serviceAreas, serviceAreaPins, companyInfo } from '../data/se
 const stats = [
   { value: `${serviceAreaPins.length}+`, label: 'Towns & Communities Served' },
   { value: '2', label: 'Counties — Morris & Somerset' },
-  { value: '9', label: 'Renovation Services Offered' },
+  { value: String(services.length), label: 'Renovation Services Offered' },
   { value: 'Licensed', label: `NJ HIC #${companyInfo.njHicLicense}` },
 ];
 ---

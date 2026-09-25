@@ -42,7 +42,7 @@ The header has two hover dropdowns (desktop) / `<details>` accordions (mobile), 
 directly off `src/data/services.ts` so they can't drift out of sync with the actual pages:
 
 - **Services** → all 9 service pages, plus "View All Services".
-- **Our Work** → `/our-work` ("Recent Projects"), `/reviews` ("Customer Reviews"), and `/social`
+- **Our Work** → `/our-work` ("Project Gallery"), `/reviews` ("Customer Reviews"), and `/social`
   ("Follow Us"). Reviews and Social were folded in here rather than added as their own top-level nav
   items — see the breakpoint note below.
 
@@ -120,8 +120,13 @@ tagging the HCP lead for a specific pipeline/team member.
 
 `/service-area` embeds a Leaflet map (`src/components/ServiceAreaMap.astro`) using CARTO's
 authenticated raster tile service, styled light (`light_all`) to match the site and keep labels
-legible, with a gold pin per town. Town coordinates live in `serviceAreaPins` in
-`src/data/services.ts` — add a `{ name, lat, lng }` entry there to add a pin.
+legible, with a gold pin per town. Towns live in `serviceAreaPins` in `src/data/services.ts` — add a
+`{ name, lat, lng }` entry there to add a town. `serviceAreas` (the town lists on the home, service
+area, and contact pages and in the footer) is derived from it, so pins and lists can't drift apart.
+
+The region itself is described as **"Morris & Northern Somerset County, NJ"** everywhere
+(`companyInfo.serviceRegion` plus a few headings). Page `<title>`s deliberately still end in
+"Morris County, NJ" for search.
 
 The CARTO API key is hardcoded in `ServiceAreaMap.astro`. This is intentional, not an oversight:
 it's a **client-side tile key** used directly in browser tile requests (like a domain-restricted
