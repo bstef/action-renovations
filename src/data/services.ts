@@ -24,7 +24,7 @@ export const services: Service[] = [
     shortDescription:
       'Revitalize your space with a comprehensive bathroom makeover — new layouts, modern fixtures, and premium flooring.',
     longDescription:
-      'We transform outdated bathrooms through expert renovation: redesigning layouts, installing modern fixtures, and applying premium flooring solutions including hardwood installation and refinishing, for a luxurious, functional retreat.',
+      'We transform outdated bathrooms through expert renovation: redesigning layouts, installing modern fixtures, and upgrading to premium tile and flooring, for a luxurious, functional retreat.',
     image: '/images/services/bathroom.jpg',
     highlights: ['Full layout redesign', 'Modern fixture installation', 'Tile & flooring upgrades', 'Vanity & storage solutions'],
   },
