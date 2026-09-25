@@ -17,6 +17,5 @@ dist/
 # editor
 .vscode/*
 !.vscode/extensions.json
-.claude/worktrees/
 
-.claude/worktrees/
+.claude/
