@@ -228,8 +228,9 @@ company/site links including Customer Reviews and Follow Us), then two full-widt
   entry's `viewBox` is cropped to the mark's real bounds so wide wordmarks fill the chip. Standard
   "we accept" brand-mark usage, not licensed assets. **Financing by HFS** badge (right) — same
   white pill/logo treatment as the homepage banner and `/financing` hero.
-- Copyright (left) + service-region line and Facebook/Instagram/Google icons (right), set in the display
-  font. The icons come from `socialLinks` in `src/data/services.ts`.
+- Copyright + service-region line stacked on the left, Facebook/Instagram/Google icons on the right,
+  set in the display font. The row has extra right padding (lg+) / bottom padding (below lg) so the
+  icons never sit under the Housecall Pro chat bubble fixed in the bottom-right corner. The icons come from `socialLinks` in `src/data/services.ts`.
 
 If you add a 10th service or another town, both list columns pull straight from `services` /
 `serviceAreas` in `src/data/services.ts` — no template changes needed. (There was a bug where the

@@ -105,25 +105,29 @@ const paymentMethods = [
     </div>
   </div>
   <div class="border-t border-white/10">
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6 flex flex-col lg:flex-row items-center justify-between gap-4 text-sm font-display font-semibold text-white/50">
-      <p>&copy; {year} {companyInfo.name}. All rights reserved.</p>
-      <div class="flex flex-col sm:flex-row items-center gap-4 sm:gap-5">
+    <!--
+      Extra right padding (lg) and bottom padding (below lg) keep this row out from under the Housecall Pro
+      chat bubble, whose fixed ~110x150px frame covers the bottom-right corner of the viewport.
+    -->
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:pl-8 lg:pr-36 2xl:pr-8 pt-6 pb-28 lg:pb-6 flex flex-col lg:flex-row items-center justify-between gap-4 text-sm font-display font-semibold text-white/50">
+      <div class="text-center lg:text-left space-y-1">
+        <p>&copy; {year} {companyInfo.name}. All rights reserved.</p>
         <p>Proudly serving {companyInfo.serviceRegion} and surrounding areas.</p>
-        <div class="flex items-center gap-3 sm:border-l sm:border-white/10 sm:pl-5">
-          {socialLinks.map((link) => (
-            <a
-              href={link.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={`Action Renovations on ${link.name}`}
-              class="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-white/70 hover:bg-gold-400 hover:text-ink transition-colors"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-4 w-4" aria-hidden="true">
-                <path fill="currentColor" d={link.iconPath} />
-              </svg>
-            </a>
-          ))}
-        </div>
+      </div>
+      <div class="flex items-center gap-3">
+        {socialLinks.map((link) => (
+          <a
+            href={link.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`Action Renovations on ${link.name}`}
+            class="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-white/70 hover:bg-gold-400 hover:text-ink transition-colors"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-4 w-4" aria-hidden="true">
+              <path fill="currentColor" d={link.iconPath} />
+            </svg>
+          </a>
+        ))}
       </div>
     </div>
   </div>
