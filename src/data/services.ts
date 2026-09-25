@@ -139,6 +139,8 @@ export const companyInfo = {
   // Housecall Pro organization UUID — used by the chat bubble (Layout.astro) and the reviews widget
   // (/reviews). Same value the old Duda site looked up at runtime for its chat widget.
   hcpOrganizationUuid: 'd75767bd-bcf6-461b-b507-4d85f1b9a7e7',
+  // Google Business Profile "Ask for reviews" link — opens the write-a-review dialog on our Maps listing.
+  googleReviewUrl: 'https://g.page/r/CXZiU0W8_isCEBM/review',
 };
 
 export interface SocialLink {

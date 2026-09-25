@@ -30,7 +30,7 @@ see "Deploying" below.
 | `/services/[slug]` | One page per service (`src/data/services.ts` → `services` array drives this). |
 | `/service-area` | Town list + interactive Leaflet map (see below). |
 | `/our-work` | One representative photo per service category — not real job case studies yet. Ends with a "Read Our Reviews" banner linking to `/reviews`. |
-| `/reviews` | Embeds the real Housecall Pro reviews widget (iframe) in a card styled to match the site. |
+| `/reviews` | Embeds the real Housecall Pro reviews widget (iframe) in a card styled to match the site, plus a "Leave Us a Google Review" button (`companyInfo.googleReviewUrl`, the Business Profile's "Ask for reviews" link). |
 | `/social` | "Follow Us" — Facebook, Instagram, and Google Business Profile cards and an embedded Facebook Page Plugin timeline (plain iframe, no SDK). Accounts live in `socialLinks` in `src/data/services.ts`. |
 | `/financing` | HFS Financial partnership page (see below). |
 | `/contact` | Contact info, a "prefer to book instantly?" Book Online callout, and the lead form. |

@@ -2,7 +2,9 @@
 export const prerender = true;
 import Layout from '../layouts/Layout.astro';
 import ContactStrip from '../components/ContactStrip.astro';
-import { companyInfo } from '../data/services';
+import { companyInfo, socialLinks } from '../data/services';
+
+const google = socialLinks.find((link) => link.name === 'Google');
 ---
 
 <Layout
@@ -32,6 +34,22 @@ import { companyInfo } from '../data/services';
         These reviews are pulled directly from our Housecall Pro customer feedback — unedited, straight from the
         homeowners we've worked with across Morris &amp; Northern Somerset County.
       </p>
+      <div class="mt-8 flex flex-col items-center gap-3">
+        <a
+          href={companyInfo.googleReviewUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2.5 rounded-md bg-ink px-7 py-3.5 text-sm font-bold uppercase tracking-wide text-white shadow hover:bg-ink-light transition-colors"
+        >
+          {google && (
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-4 w-4 text-gold-400" aria-hidden="true">
+              <path fill="currentColor" d={google.iconPath} />
+            </svg>
+          )}
+          Leave Us a Google Review
+        </a>
+        <p class="text-sm text-ink/50">Worked with us? We'd love to hear how it went.</p>
+      </div>
     </div>
 
     <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
