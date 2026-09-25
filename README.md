@@ -216,9 +216,12 @@ ever changes.
 Four columns (company info + license, all 9 services, the full service-area town list, and
 company/site links including Customer Reviews and Follow Us), then two full-width rows below:
 
-- **Payment methods** (left) — Visa, Mastercard, Amex, Discover, Apple Pay, Google Pay, as inline
-  SVGs sourced from [Simple Icons](https://simpleicons.org) (CC0 icon shapes; these are standard
-  "we accept" brand-mark usage, not licensed assets). **Financing by HFS** badge (right) — same
+- **Payment methods** (left) — Visa, Mastercard, Amex, Discover, Apple Pay, Google Pay, as
+  full-color inline SVGs on white chips (the one-color white versions were too hard to see on the
+  dark footer). Wordmark shapes come from [Simple Icons](https://simpleicons.org) (CC0) recolored in
+  each brand's colors; Mastercard's circles and Google's four-color G are drawn directly. Each
+  entry's `viewBox` is cropped to the mark's real bounds so wide wordmarks fill the chip. Standard
+  "we accept" brand-mark usage, not licensed assets. **Financing by HFS** badge (right) — same
   white pill/logo treatment as the homepage banner and `/financing` hero.
 - Copyright (left) + service-region line and Facebook/Instagram icons (right), set in the display
   font. The icons come from `socialLinks` in `src/data/services.ts`.
