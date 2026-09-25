@@ -147,6 +147,9 @@ export const companyInfo = {
   hcpBookingToken: '3a86fe0e3aa144b9beef091769cbb72a',
   hcpOrgName: 'Action-Renovations-LLC',
   bookingUrl: 'https://book.housecallpro.com/book/Action-Renovations-LLC/3a86fe0e3aa144b9beef091769cbb72a?v2=true',
+  // Housecall Pro organization UUID — used by the chat bubble (Layout.astro) and the reviews widget
+  // (/reviews). Same value the old Duda site looked up at runtime for its chat widget.
+  hcpOrganizationUuid: 'd75767bd-bcf6-461b-b507-4d85f1b9a7e7',
 };
 
 export interface SocialLink {

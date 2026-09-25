@@ -44,5 +44,19 @@ const { title, description } = Astro.props;
       <slot />
     </main>
     <Footer />
+
+    <!--
+      Housecall Pro chat bubble (same widget as the old actionrenovations.net site). proChat.js looks up
+      this tag by id to read its data-* attributes and appends a fixed bottom-right iframe to <body>,
+      so it has to stay at the end of <body> and keep this exact id.
+    -->
+    <script
+      is:inline
+      id="housecall-pro-chat-bubble"
+      src="https://chat.housecallpro.com/proChat.js"
+      data-color="#e8ac37"
+      data-organization={companyInfo.hcpOrganizationUuid}
+      defer
+    ></script>
   </body>
 </html>

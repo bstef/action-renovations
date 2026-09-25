@@ -168,6 +168,18 @@ Booking config (token, org name, and the fallback booking-page URL) lives in `co
    test on `actionrenovations.net` once DNS is cut over** — if it's still blank there, check
    Housecall Pro's booking widget settings for a domain allowlist.
 
+## Chat bubble (Housecall Pro)
+
+The same Housecall Pro chat widget the old actionrenovations.net site used is loaded on every page,
+at the end of `<body>` in `src/layouts/Layout.astro`: a single `proChat.js` script tag that renders
+a fixed bottom-right bubble, opening a "Hello, how can we help?" form (name + phone). Conversations
+land in Housecall Pro's messaging inbox. Its `data-color` is the site gold (`#e8ac37`), and
+`data-organization` is `companyInfo.hcpOrganizationUuid` (also used by the `/reviews` widget).
+
+Keep the tag's `id="housecall-pro-chat-bubble"` and its position at the end of `<body>`:
+`proChat.js` looks itself up by that id to read its settings and appends its iframe to `<body>` as
+soon as it runs.
+
 ## Customer Login (Housecall Pro portal)
 
 The header's "Customer Login" link (`companyInfo.customerPortalUrl` in `src/data/services.ts`)
